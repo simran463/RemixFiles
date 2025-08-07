@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.7.0 < 0.9;
+
+contract SimpleStorage{
+    // This will get initialised to 0
+    uint256 favoriteNumber;
+
+    struct People{
+        uint256 favoriteNumber;
+        string name;
+    }
+    People public person = People({favoriteNumber :2, name : "Sam"});
+
+    People[] public people; // Dynamic array
+
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        people.push(People({favoriteNumber:_favoriteNumber, name : _name}));
+    }
+   
+   function Store(uint256 _favoriteNumber) public {
+       favoriteNumber = _favoriteNumber;
+   }
+   
+   function retrieve() public view returns (uint256){
+       return favoriteNumber;
+   }
+
+
+}
+
+
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.7.0 < 0.9;
+
+contract SimpleStorage{
+    // This will get initialised to 0
+    uint256 favoriteNumber;
+
+    struct People{
+        uint256 favoriteNumber;
+        string name;
+    }
+    People public person = People({favoriteNumber :2, name : "Sam"});
+
+    People[] public people; // Dynamic array
+
+    mapping(string => uint256) public nameToFavoriteNumber;
+
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        people.push(People({favoriteNumber:_favoriteNumber, name :_name}));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
+   
+   function Store(uint256 _favoriteNumber) public {
+       favoriteNumber = _favoriteNumber;
+   }
+   
+   function retrieve() public view returns (uint256){
+       return favoriteNumber;
+   }
